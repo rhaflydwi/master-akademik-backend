@@ -78,3 +78,5 @@ $router->put('/laboratorium/{id}', 'LaboratoriumController@update');
 //presensi
 
 $router->get('/presensi/{id}','PresensiController@index');
+
+$router->post('/presensi/absen-masuk','PresensiController@absenMasuk');

@@ -19,7 +19,7 @@ class PresensiSiswa extends Model
      * @var array
      */
     protected $fillable = [
-        'nama', 'kelas', 'status', 'mata_pelajaran', 
+        'id_user','nama', 'kelas', 'status', 'mata_pelajaran', 
     ];
 
     protected $appends = [
