@@ -84,6 +84,7 @@ class UserController extends Controller
             'password' => 'required|min:6',
             'phone_number' => 'required|string',
             'role' => 'required',
+            'kelas' => 'required',
             'status' => 'required',
         ]);
 
@@ -104,6 +105,7 @@ class UserController extends Controller
             'password' => app('hash')->make($request->password),
             'phone_number' => $request -> phone_number,
             'role' => $request -> role,
+            'kelas' => $request -> kelas,
             'status' => $request->status
             ]);
             return response()->json(['status' => 'success']);
@@ -128,6 +130,7 @@ class UserController extends Controller
             'password' => 'nullable|string|min:6',
             'phone_number' => 'required|string',
             'role' => 'required',
+            'kelas' => 'required',
             'status' => 'required',
         ]);
 
@@ -159,6 +162,7 @@ class UserController extends Controller
             'password' => $password,
             'phone_number' => $request->phone_number,
             'role' => $request->role,
+            'kelas' => $request->kelas,
             'status' => $request->status
         ]);
         return response()->json(['status' => 'success']);
