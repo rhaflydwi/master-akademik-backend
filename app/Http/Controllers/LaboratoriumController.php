@@ -48,7 +48,7 @@ class LaboratoriumController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'judul' => 'required|string|max:50',
+            'nama_alat' => 'required|string|max:50',
             'jumlah' => 'required|string',
             'penanggung_jawab' => 'required|string',
             'status' => 'required',
@@ -58,7 +58,7 @@ class LaboratoriumController extends Controller
 
         //KEMUDIAN PERBAHARUI DATA Laboratorium
         $laboratorim->update([
-            'judul' => $request -> judul,
+            'nama_alat' => $request -> nama_alat,
             'jumlah' => $request -> jumlah,
             'penanggung_jawab' => $request -> penanggung_jawab,
             'status' => $request -> status,
