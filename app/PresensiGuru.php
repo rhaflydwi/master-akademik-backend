@@ -8,12 +8,12 @@ use Carbon\Carbon;
 
 
 
-class PresensiSiswa extends Model
+class PresensiGuru extends Model
 {
     /**
      * @var string
      */
-    protected $table = 'presensisiswa';
+    protected $table = 'presensi_guru';
 
     /**
      * @var array

@@ -1,13 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\PresensiSiswa;
+use App\PresensiGuru;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
-class PresensiController extends Controller
+class PresensiGuruController extends Controller
 {
     public function index($id, Request $request)
     {
@@ -16,7 +16,7 @@ class PresensiController extends Controller
         //     $id = $request
         // }
 
-        $data = PresensiSiswa::where('id_user',$id)->with('user_data')->orderBy('created_at','ASC')->get();
+        $data = PresensiGuru::where('id_user',$id)->with('user_data')->orderBy('created_at','ASC')->get();
 
         return response()->json([
             'success' => true,
@@ -26,21 +26,20 @@ class PresensiController extends Controller
     }
     public function all(Request $request)
     {
-        $Presensi = PresensiSiswa::with('user_data')->when($request->q, function($Presensi) use($request) {
-            $Presensi = $Presensi->where('user', 'LIKE', '%' . $request->q . '%');
+        $PresensiGuru = PresensiGuru::with('user_data')->when($request->q, function($PresensiGuru) use($request) {
+            $PresensiGuru = $PresensiGuru->where('user', 'LIKE', '%' . $request->q . '%');
         })->paginate(100);
 
         return response()->json([
             'success' => true,
-            'message' =>'List Semua Laboratorium',
-            'data'    => $Presensi
+            'message' =>'List Semua Data',
+            'data'    => $PresensiGuru
         ], 200);
     }
     public function absenMasuk(Request $request) {
         
-        PresensiSiswa::create([
+        PresensiGuru::create([
             'id_user' => $request->user()->id,
-            // 'nama' => $request->user()->name,
             'kelas' => $request->user()->kelas,
             'status' => '0',
             'jam_masuk' => Carbon::now()->setTimeZone('Asia/Makassar'),

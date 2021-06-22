@@ -13,7 +13,7 @@ class BukuController extends Controller
         $buku = Buku::when($request->q, function($buku) use($request) {
             $buku = $buku->where('judul', 'LIKE', '%' . $request->q . '%');
         })->paginate(10);
-
+        
         return response()->json([
             'success' => true,
             'message' =>'List Semua buku',

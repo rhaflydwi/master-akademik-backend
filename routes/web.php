@@ -32,9 +32,57 @@ $router->group(['middleware' => 'auth'], function() use($router) {
     $router->get('/userpetugas_laboratorium', 'UserController@petugas_laboratorium');
     $router->get('/userpetugas_perpustakaan', 'UserController@petugas_perpustakaan');
     $router->get('/userkepala_sekolah', 'UserController@kepala_sekolah');
+    // routes buku
+    $router->get('/buku/login', 'UserController@getBukuLogin');
+    $router->get('/buku/{id}', 'BukuController@edit');
+    $router->get('/buku', 'BukuController@index'); 
+    $router->post('/buku', 'BukuController@store');
+    $router->delete('/buku/{id}', 'BukuController@destroy');
+    $router->put('/buku/{id}', 'BukuController@update');
+    $router->get('/count', 'UserController@count');
 
-    
-    
+    // routes Jadwal Siswa
+    $router->get('/jadwalsiswa', 'JadwalSiswaController@index');
+    $router->post('/jadwalsiswa', 'JadwalSiswaController@store');
+    $router->delete('/jadwalsiswa/{id}', 'JadwalSiswaController@destroy');
+    $router->put('/jadwalsiswa/{id}', 'JadwalSiswaController@update');
+    $router->get('/jadwalsiswa/{id}', 'JadwalSiswaController@edit');
+    $router->get('/jadwalsiswavii', 'JadwalSiswaController@kelasvii');
+    $router->get('/jadwalsiswaviii', 'JadwalSiswaController@kelasviii');
+    $router->get('/jadwalsiswaix', 'JadwalSiswaController@kelasix');
+
+    //laboratorium
+    $router->get('/laboratorium/{id}', 'LaboratoriumController@edit');
+    $router->get('/laboratorium', 'LaboratoriumController@index'); 
+    $router->post('/laboratorium', 'LaboratoriumController@store');
+    $router->delete('/laboratorium/{id}', 'LaboratoriumController@destroy');
+    $router->put('/laboratorium/{id}', 'LaboratoriumController@update');
+
+    //presensi siswa
+
+    $router->get('/presensi/{id}','PresensiController@index');
+    $router->get('/presensi','PresensiController@all');
+    $router->post('/presensi/absen-masuk','PresensiController@absenMasuk');
+
+    //presensi guru
+
+    $router->get('/presensiguru/{id}','PresensiGuruController@index');
+    $router->get('/presensiguru','PresensiGuruController@all');
+    $router->post('/presensiguru/absen-masuk','PresensiGuruController@absenMasuk');
+
+    // Data Nilai
+    $router->post('/datanilai/masuk','NilaiSiswaController@store');
+    $router->get('/datanilai/{id}','NilaiSiswaController@index');
+    $router->get('/datanilai/a/kelasvii', 'NilaiSiswaController@kelasvii');
+    $router->get('/datanilai/a/kelasviii', 'NilaiSiswaController@kelasviii');
+    $router->get('/datanilai/a/kelasxi', 'NilaiSiswaController@kelasxi');
+    $router->get('/datanilai','NilaiSiswaController@all');
+    $router->put('/datanilai/{id}', 'NilaiSiswaController@update');
+    $router->get('/datanilai/{id}', 'NilaiSiswaController@edit');
+    $router->delete('/datanilai/delete/{id}', 'NilaiSiswaController@destroy');
+
+        
+        
 
     
     // // routes buku
@@ -50,33 +98,3 @@ $router->post('/login', 'UserController@login');
 $router->post('/reset', 'UserController@sendResetToken');
 $router->put('/reset/{token}', 'UserController@verifyResetPassword');
 
-// routes buku
-$router->get('/buku/login', 'UserController@getBukuLogin');
-$router->get('/buku/{id}', 'BukuController@edit');
-$router->get('/buku', 'BukuController@index'); 
-$router->post('/buku', 'BukuController@store');
-$router->delete('/buku/{id}', 'BukuController@destroy');
-$router->put('/buku/{id}', 'BukuController@update');
-$router->get('/count', 'UserController@count');
-
-$router->get('/jadwalsiswa', 'JadwalSiswaController@index');
-$router->post('/jadwalsiswa', 'JadwalSiswaController@store');
-$router->delete('/jadwalsiswa/{id}', 'JadwalSiswaController@destroy');
-$router->put('/jadwalsiswa/{id}', 'JadwalSiswaController@update');
-$router->get('/jadwalsiswa/{id}', 'JadwalSiswaController@edit');
-$router->get('/jadwalsiswavii', 'JadwalSiswaController@kelasvii');
-$router->get('/jadwalsiswaviii', 'JadwalSiswaController@kelasviii');
-$router->get('/jadwalsiswaix', 'JadwalSiswaController@kelasix');
-
-//laboratorium
-$router->get('/laboratorium/{id}', 'LaboratoriumController@edit');
-$router->get('/laboratorium', 'LaboratoriumController@index'); 
-$router->post('/laboratorium', 'LaboratoriumController@store');
-$router->delete('/laboratorium/{id}', 'LaboratoriumController@destroy');
-$router->put('/laboratorium/{id}', 'LaboratoriumController@update');
-
-//presensi
-
-$router->get('/presensi/{id}','PresensiController@index');
-
-$router->post('/presensi/absen-masuk','PresensiController@absenMasuk');

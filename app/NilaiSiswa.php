@@ -4,35 +4,40 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\User;
-use Carbon\Carbon;
 
 
 
-class PresensiSiswa extends Model
+class NilaiSiswa extends Model
 {
     /**
      * @var string
      */
-    protected $table = 'presensisiswa';
+    protected $table = 'nilai_siswa';
 
     /**
      * @var array
      */
     protected $fillable = [
-        'id_user', 'kelas', 'status', 'mata_pelajaran', 
+        'id_user','name', 'kelas', 'mata_pelajaran', 'nilai',
     ];
 
     protected $appends = [
         'mata_pelajaran_teks',
         'kelas_teks',
-        'format_jam_masuk'
+        'nilai_teks',
 
     ];
 
     public function user_data()
     {
         return $this->belongsTo(User::class,'id_user');
+        // return 'asd';
 
+    }
+
+    public function user_name_data()
+    {
+        return $this->belongsTo(User::class, 'name');
     }
 
     public function getMataPelajaranTeksAttribute()
@@ -55,9 +60,14 @@ class PresensiSiswa extends Model
         return $arr[$this->kelas];
     }
 
-    public function getFormatJamMasukAttribute()
+    public function getNilaiTeksAttribute()
     {
-        $format = Carbon::parse($this->jam_masuk)->format('H:s');
-        return $format;
+
+        $arr = [
+            'A', 'B', 'C', 'D'
+        ];
+
+        return $arr[$this->nilai];
     }
+
 }

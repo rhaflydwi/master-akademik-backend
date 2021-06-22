@@ -10,12 +10,6 @@ use App\Mail\ResetPasswordMail;
 
 class UserController extends Controller
 {
-    public function count(Request $request){
-        // mengambil data barang
-        $count = User::orderBy('users')->count();
-        return response()->json(['status' => 'success', 'data' => $count]);
-
-    }
     public function index(Request $request)
     {
         $users = User::orderBy('created_at', 'desc')->when($request->q, function($users) use($request) {
